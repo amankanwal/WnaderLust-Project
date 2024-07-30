@@ -1,0 +1,35 @@
+<%- layout("./layouts/boilerplate")%>
+<body>
+ 
+        <div class="edit-form row col-8 offset-2 mt-3" >
+            <h3>List Editor </h3>
+
+            <form action="http://localhost:8080/listings/<%= singleList._id%>?_method=PUT" novalidate method="post" class="needs-validation" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label  class="form-label" for="title">Title</label>
+                    <input required class="form-control" id="title" type="text" name="update[updatedTitle]"  value="<%= singleList.title %> "  >
+                </div>
+            <div class="mb-3">
+                    <label for="description" class="form-label"> Description</label>
+                    <textarea required class="form-control" id="description" name="update[updatedDescription]" ><%= singleList.description %></textarea>
+            </div>
+            <div class="row mb-3">
+                <div class="mb-3 col-md-4">
+                    <label class="form-label" for="price">Price</label>
+                    <input required class="form-control" id="price" type="number" name="update[updatedPrice]" value="<%= singleList.price %>">
+                </div>
+                
+            </div>
+            <div class="mb-3">
+                    <div class="row col-3">
+                        <img src="<%=singleList.image.url %>" alt="">
+                    </div>
+                    <label for="imageUrl">upload image</label>
+                    <input  class="form-control" id="imageUrl" type="file" name="update[updatedImageUrl]" value="<%= singleList.image %>">
+            </div>
+
+                <button class="btn">Update</button>
+            </form>
+        </div>
+        <script src="/js/script.js"></script>
+</body>

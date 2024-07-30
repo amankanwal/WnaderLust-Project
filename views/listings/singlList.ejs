@@ -1,0 +1,98 @@
+<%- layout("./layouts/boilerplate")  %>
+<body >
+    
+    <div id="single-list-container" class="card border">
+
+        <div id="single-list-title">
+            <div class="title-name">
+                <h2 class="title"><a href="http://localhost:8080/listings" > <%= singleList.title%> </a></h2>
+            </div>
+            <div>
+                <i class="fa-regular fa-heart"></i>
+            </div>
+        </div>
+
+        <div id="single-list-image" class="border" >
+            <img src="<%= singleList.image.url%>" alt="sdfgh">
+        </div>
+
+       <div id="single-list-description" class="border">
+            <a href="http://localhost:8080/listings/<%= singleList._id%>">   </a>
+            <hr>
+            <i> Malik : <%= singleList.user.username %></i><hr>
+            <p>description  :<%= singleList.description %></p>
+            <p>price : &#x20B9;    <%= singleList.price%>
+            </p>
+            <p>country : <%= singleList.country %></p>
+          
+           
+       </div>
+      <% if(req.user && req.user._id.equals(singleList.user._id)){ %>
+            <div id="single-list-botton" class="border">
+                <a class="mr-2" href="http://localhost:8080/listings/<%= singleList._id%>/edit">update</a>
+
+                <form action="/listings/<%= singleList._id%>?_method=DELETE" method="post">
+                    <button class="ml-3"  >Remove list</button>
+                </form>
+            </div>
+        <% } %>
+    
+    </div><br><hr>
+   <%   if(req.user){ %>
+    <div id="review-form" class="row border">
+        <h2>review</h2>
+        <form action="/listings/<%=singleList._id %>/review"  method="post" class=" needs-validation row col-4 offset-2" novalidate> 
+
+            <div   id="rating">
+
+            <fieldset class="starability-basic">
+
+                <legend>First rating:</legend>
+                <!-- <label class="form-label mb-2 s" for="rating">rating</label> -->
+                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                <label for="first-rate1" title="Terrible">1 star</label>
+                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                <label for="first-rate2" title="Not good">2 stars</label>
+                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                <label for="first-rate3" title="Average">3 stars</label>
+                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                <label for="first-rate4" title="Very good">4 stars</label>
+                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                <label for="first-rate5" title="Amazing">5 stars</label>
+              </fieldset>
+              </div>
+            <div  id="comment">
+                <label class="form-label mb-2" for="comment">Comment</label>
+                <textarea class="form-control" name="review[commnet]" id="comment" required ></textarea>
+            </div>
+            <div  class="invalid-feedback mb-2">Kuch Tw likh bhai</div>
+            <button class="review-btn">submit</button>
+
+        </form>
+    </div>
+    <hr>
+    <% } %>
+    <h3>Reviews</h3>
+    
+    <div id="all-reviews" class="row  border">
+        
+       <% for(let index of singleList.review ){ %>
+
+        <div id="review-card" class="col-3 border">
+            <h4>@<%= index.user.username %></h4>
+            <h5><%= index.rating %> Star</h5>
+            <p><%= index.commnet %></p>
+            <p class="starability-result" data-rating=<%= index.rating %>></p>
+            <form action="http://localhost:8080/listings/<%= singleList._id %>/review/<%= index._id %>?_method=DELETE" method="post">
+                <button class="btn btn-secondary btn-sm">DELETE</button>
+            </form>
+            
+            
+            
+        </div>
+        <% } %>
+    </div>
+    
+       <script src="/js/script.js"></script>
+</body>

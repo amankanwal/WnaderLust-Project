@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="border width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+  <body>
+   <style>
+    #search-div{
+      margin: auto;
+      width: 50%;
+    }
+    #search {
+      width: 25%;
+      padding:  5px 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: none;
+
+      transition: all 1s ease;
+    }
+
+    #search-div input:focus{
+
+    width: 80%; /* Expand to full width of the parent container */
+    box-shadow: 0 0 10px 0 rgba(255, 0, 0, 0.5); /* Light red shadow */
+    outline: none;
+
+    }
+    #search-div input:focus::placeholder{
+      color: transparent;
+    }
+    .search-btn{
+      border: none;
+      border-radius: 20px;
+      padding: 5px 17px;
+      color: #fff;
+      background-color: #f5000c;
+    }
+   </style>
+      <nav id="navbar" class="border navbar navbar-expand-md bg-body-light border-bottom sticky-top  ">
+
+            <div class="border  container-fluid">
+
+              <a class="border navbar-brand" href="#"><i class="fa-brands fa-airbnb" style="color: #f5000c;"></i></a>
+
+              <button class="border navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="border navbar-toggler-icon"></span>
+              </button>
+
+              <div  class=" border collapse navbar-collapse" id="navbarNavAltMarkup">
+
+                <div class="navbar-nav border">
+                  <a class="nav-link active" aria-current="page" href="/">Home</a>
+                  <a class="nav-link" href="/listings">listings</a>
+                  <a class="nav-link" href="/listings/new">new listings</a>
+                  
+                </div>
+                <div id="search-div" class="order">
+                  
+                  <input type="text" placeholder="Search for Air BnB" id="search" name="search">
+                  <label for="search"><button class="search-btn">Search</button></label>
+                </div>
+                <% if(!req.user){ %>
+                <div class="navbar-nav signup-login border  " >
+                  <a class="nav-link" href="/signup">Sign Up</a>
+                  <a class="nav-link" href="/login">Login </a>
+                </div>
+                <%} %>
+
+                <%if(req.user){ %>
+                <div class="navbar-nav signup-logout border" >
+                  <a class="nav-link" href="/logout">Logout </a>
+                </div>
+                <% } %>
+
+              </div>
+            </div>
+        </nav>
+  </body>
+</html>

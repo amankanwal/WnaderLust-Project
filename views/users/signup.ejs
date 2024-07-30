@@ -1,0 +1,27 @@
+<%- layout("./layouts/boilerplate")%>
+
+<body>
+    <h1 class="border mt-4 mb-4  col-6 offset-3">Sign up </h1>
+    <div class="border row mt-2 mb-2 ">
+        <div class="border mt-2 mb-2  col-6 offset-3">
+
+            <form action="/signup" method="post" novalidate class="needs-validation"> 
+
+                <label for="e-mail" class=" mt-3 mb-3 form-label">E-mail</label>
+                <input name="email" type="email" placeholder="e-mail" id="username" class="form-control" required>
+
+                <label for="username" class=" mt-3 mb-3  form-label">Username</label>
+                <input name="username" type="text" placeholder="Username" id="username" class="form-control" required>
+
+                <label for="username" class=" mt-3 mb-3 form-label">Password</label>
+                <input name="password" type="password" placeholder="Password" id="username" class="form-control" required>
+
+                <button class=" mt-3 mb-3  btn btn-success">Sign Up </button>
+                <hr>
+                <a class=" mt-3 mb-3 " href="/signup/google ">Sign up with google </a>
+                
+            </form>
+        </div>
+    </div>
+</body>
+</html>
