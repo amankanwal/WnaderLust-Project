@@ -18,10 +18,11 @@
     }
 
     #toggleButton.active {
-        background-color: darkgray;
+        /* background-color: darkgray;
         color: white;
+         */
     }
-
+    
     li{
         cursor: pointer;
         display: flex;
@@ -74,13 +75,26 @@
     .tax-border input {
         margin: -5px 30px;
     }
+    #toggleButton{
+         color: blue !important;
+         background-color: rgb(209, 32, 61);
+    }
+
+    @media (max-width: 798px) {
+        #icons-list{
+            display: none;
+        }
+        #search {
+            display: none;
+        }
+    }
 
 </style>
 
 <body>
     
 
-    <div class="border row " id="icons-list">
+    <div class=" row " id="icons-list">
        <ul id="icons" class="border col-10">
         <li class="borde" ><div><i class="fa-solid fa-water-ladder"></i></div>
             <p>water land</p></li>
@@ -103,8 +117,8 @@
        </ul>
 
        <div class="tax-border col-2">
-            <label class="border" for="toggle-button">Include Tax</label>
-            <input class="border" type="checkbox" id="toggleButton">
+            <label class="form-check-label" for="toggle-button">Include Tax</label>
+            <input class="form-check-input" type="checkbox" id="toggleButton">
         </div>
     </div>
 
@@ -112,7 +126,7 @@
 
         <% for(let index of allListings) { %>
 
-            <div class="col">
+            <div class="col single-list">
 
                 <a href="/listings/<%= index._id %>" class="card-link">
 
