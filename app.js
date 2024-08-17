@@ -114,7 +114,9 @@
         console.log("listening");
     })
 
-
+    app.get("/"  , (request , response ) => {
+        response.render(  "/listings");
+    })
 
 
     //error handler 
