@@ -115,11 +115,11 @@
     })
 
     app.get("/"  , (request , response ) => {
-        response.render(  "/listings");
+        response.render(  "/listings/allListings.ejs");
     })
 
 
-    //error handler 
+    //error handler /
     app.use((err , request , response , next)  => {
 
         console.log("Fall into error handler !");
