@@ -87,7 +87,7 @@
     app.use(express.static(path.join(__dirname , "/public")));
     // useing router for application : 
     app.use('/' , userRouter);
-    app.use('/listings', listingRouter);
+    app.use('/', listingRouter);
     app.use('/listings/:id/review' , reviewRouter);
 
     app.use(cookieParser());
