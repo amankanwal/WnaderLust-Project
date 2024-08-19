@@ -12,7 +12,7 @@ const multer = require("multer");
 const { storage } = require("../cloudCionfuig.js");
 const upload = multer({storage})
 
-router.get("/new",isLoggedin , (request , response) => {
+router.get("/listings/new",isLoggedin , (request , response) => {
    
     response.render("/listings/newList.ejs");
 
