@@ -87,7 +87,7 @@
     app.use(express.static(path.join(__dirname , "/public")));
     // useing router for application : 
     app.use('/' , userRouter);
-    app.use('/listings', listingRouter);
+    app.use('/', listingRouter);
     app.use('/listings/:id/review' , reviewRouter);
 
     app.use(cookieParser());
@@ -114,12 +114,16 @@
         console.log("listening");
     })
 
+<<<<<<< HEAD
     app.get("/"  , (request , response ) => {
         response.render(  "/listings");
     })
+=======
+  
 
+>>>>>>> 386df642c6b09f5d87ce0cfc96e6c056ae31f9da
 
-    //error handler 
+    //error handler /
     app.use((err , request , response , next)  => {
 
         console.log("Fall into error handler !");
