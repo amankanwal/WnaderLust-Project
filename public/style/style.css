@@ -72,15 +72,20 @@ footer{
 
 #main{
     display: flex !important;
-    justify-content: center !important;
+    /* justify-content: center !important; */
     width: 100% !important;
-    margin: 1rem;
+    /* margin: 1rem; */
     /*justify-content: space-evenly; */
+}
+.single-list{
+    display: flex ;
+    justify-content: center ;
+    width: 100% ;
 }
 .card{
     border: none !important;
  
-    /* padding: .5rem; */
+    padding: .5rem;
 }
 .card h5 a {
     text-decoration: none;
