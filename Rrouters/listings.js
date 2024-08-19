@@ -5,6 +5,7 @@ const Listing = require("../models/models.js");
 const { isLoggedin, isOwner } = require("../middleware.js");
 const listingControler = require("../controlers/listings.js")
 router.get("/" , listingControler.index)
+router.get("/listings" , listingControler.index)
 const MyError = require("../Utility/CustomErrors/MyError.js")
 //new list form
 const multer = require("multer");
@@ -18,23 +19,7 @@ router.get("/new",isLoggedin , (request , response) => {
 })
 
 //post route 
-router.post("/" ,  upload.single("newList[image]")/* paramerter name sholud match with input name attribute */, wrapAsync (( async (request , response , next ) => {
-    let url = request.file.path;
-    let filename = request.file.filename;
-    console.log("filename nad fielurl" , url , filename);
-    const newList = new Listing(request.body.newList);
-    newList.user = request.user._id;
-
-    newList.image = {url , filename}
-    await newList.save();
-    request.flash("success" , "List add ho gai ! ");
-
-    //This is falash message we can flash a message as our listng is saved 
-    console.log(request.file)
-    response.redirect("/listings")
-
-})));
-router.post("/listings" ,  upload.single("newList[image]")/* paramerter name sholud match with input name attribute */, wrapAsync (( async (request , response , next ) => {
+router.post("/listings/new" ,  upload.single("newList[image]")/* paramerter name sholud match with input name attribute */, wrapAsync (( async (request , response , next ) => {
     let url = request.file.path;
     let filename = request.file.filename;
     console.log("filename nad fielurl" , url , filename);
@@ -53,7 +38,7 @@ router.post("/listings" ,  upload.single("newList[image]")/* paramerter name sho
 
 // route for a seprate id
 
-router.get("listings/:id" , wrapAsync (async (request , response ) => {
+router.get("/listings/:id" , wrapAsync (async (request , response ) => {
     
     let {id} = request.params;
     let singleList = await Listing.findById(id)
@@ -76,7 +61,7 @@ router.get("listings/:id" , wrapAsync (async (request , response ) => {
 
 
 //edit route 
-router.get("listings/:id/edit" ,isOwner, async (request , response ) => {
+router.get("/listings/:id/edit" ,isOwner, async (request , response ) => {
 
     let {id} = request.params;
     let singleList = await Listing.findById(id);
@@ -88,7 +73,7 @@ router.get("listings/:id/edit" ,isOwner, async (request , response ) => {
 })
 
 //update route put request
-router.put("listings/:id" ,
+router.put("/listings/:id" ,
     isLoggedin,
     isOwner,
     upload.single("update[updatedImageUrl]"),
@@ -119,7 +104,7 @@ router.put("listings/:id" ,
 
 //delete route 
 
-router.delete("listings/:id" ,isLoggedin,isOwner, wrapAsync ( async (request , response ) => {
+router.delete("/listings/:id" ,isLoggedin,isOwner, wrapAsync ( async (request , response ) => {
 
     let {id} = request.params;
     
