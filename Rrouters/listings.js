@@ -14,7 +14,7 @@ const upload = multer({storage})
 
 router.get("/new",isLoggedin , (request , response) => {
    
-    response.render("listings/newList.ejs");
+    response.render("/listings/newList.ejs");
 
 })
 
